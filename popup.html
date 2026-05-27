@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>tdimagedown</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/popup.css">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img class="mark" src="/logo.png" alt="" aria-hidden="true">
+      <div>
+        <h1>tdimagedown</h1>
+        <p id="statusText" data-i18n="statusReady">Ready to scan this page</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <select id="languageSelect" class="language-select" title="Language" data-i18n-title="language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+      <button id="scanBtn" class="icon-btn" title="Reload" type="button" aria-label="Reload" data-i18n="rescan"
+        data-i18n-title="rescan" data-i18n-aria-label="rescan">Reload</button>
+    </div>
+  </header>
+
+  <section class="tools">
+    <div class="actions">
+      <button id="selectAllBtn" type="button" data-i18n="selectAll">Select all</button>
+      <button id="clearBtn" type="button" data-i18n="clear">Clear</button>
+      <button id="downloadBtn" class="primary" type="button" data-i18n="download">Download</button>
+    </div>
+
+    <div class="tool-row">
+      <input id="searchInput" type="search" placeholder="Filter by URL or filename"
+        data-i18n-placeholder="filterPlaceholder">
+    </div>
+
+    <div class="filter-grid">
+      <select id="typeFilter" title="Image type" data-i18n-title="imageType">
+        <option value="" data-i18n="allTypes">All types</option>
+        <option value="jpg">JPG</option>
+        <option value="png">PNG</option>
+        <option value="webp">WEBP</option>
+        <option value="gif">GIF</option>
+        <option value="svg">SVG</option>
+        <option value="avif">AVIF</option>
+        <option value="other" data-i18n="other">Other</option>
+      </select>
+      <select id="sortSelect" title="Sort" data-i18n-title="sort">
+        <option value="area" data-i18n="largest">Largest</option>
+        <option value="index" data-i18n="pageOrder">Page order</option>
+        <option value="url">URL</option>
+      </select>
+      <label>W <input id="minWidth" type="number" min="0" step="1" value="0"></label>
+      <label>H <input id="minHeight" type="number" min="0" step="1" value="0"></label>
+    </div>
+  </section>
+
+  <main id="imageList" class="image-list" aria-live="polite"></main>
+
+  <template id="imageCardTemplate">
+    <article class="image-card">
+      <div class="card-head">
+        <label class="check-wrap" title="Select image">
+          <input class="select-input" type="checkbox" checked>
+        </label>
+        <div class="badges">
+          <span class="type-badge"></span>
+          <span class="size-badge"></span>
+        </div>
+        <a class="open-link" target="_blank" rel="noreferrer" title="Open in new tab" data-i18n="open"
+          data-i18n-title="openNewTab">Open</a>
+      </div>
+      <div class="thumb-wrap">
+        <img class="thumb" alt="" referrerpolicy="no-referrer" crossorigin="anonymous">
+      </div>
+      <div class="meta">
+        <div class="filename"></div>
+        <div class="details"></div>
+        <div class="url"></div>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="/src/popup.js"></script>
+</body>
+
+</html>
